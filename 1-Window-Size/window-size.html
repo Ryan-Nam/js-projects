@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div class="tag">Window Sie</div>
+
+<!-- addEventListener "resize" -->
+<script>
+    // window.addEventListener('resize', function(){
+    //     console.log('resizessss');
+    // })
+
+
+    // String Template : able to write "TExt" and "Variable" together.    ` `  (back tic)
+
+
+
+    const get = document.querySelector('.tag');
+
+    function updateTag(){
+        get.innerHTML = `
+        window.Screen: ${window.screen.width}, ${window.screen.height} </br>
+        window.Outer: ${window.outerWidth}, ${window.outerHeight}</br>
+        window.Inner: ${window.innerWidth}, ${window.innerHeight}</br>
+        Document Element.clinetWidth: ${document.documentElement.clientWidth}, ${document.documentElement.clientHeight}
+
+        `;
+    }
+
+    window.addEventListener('resize', () => {
+        
+        updateTag();
+
+        // console.log(`window.Screen: ${window.screen.width}, ${window.screen.height}`);
+
+        // console.log(`window.Outer: ${window.outerWidth}, ${window.outerHeight}`);
+
+        // console.log(`window.Inner: ${window.innerWidth}, ${window.innerHeight}`);
+
+        // console.log(`Document Element.clinetWidth: ${document.documentElement.clientWidth}, ${document.documentElement.clientHeight}`);
+    })
+
+    updateTag();
+</script>
+
+</body>
+</html>
