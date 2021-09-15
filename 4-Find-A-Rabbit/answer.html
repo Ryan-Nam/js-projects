@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll</title>
+    <style>
+      body{
+        background-color: black;
+        text-align: center;
+      }
+
+      img {
+          display: block;
+          margin: auto;
+      }
+
+      button {
+          outline: none;
+          background-color: tomato;
+          color: white;
+          font-size: 32px;
+          margin: 16px 0px;
+          cursor: pointer;
+      }
+    </style>
+  </head>
+
+
+  <body>
+   
+
+    <button class="findrabbit">Find a rabbit🐇</button>
+    <!-- Control + Command + space => emohi insert , cuz emoji is one of unicode
+    https://getemoji.com/
+  -->
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/rabbit.png" alt="rabbit" id="rabbit">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+    <img src="img/carrot.png" alt="carrot" class="carrot">
+   
+    <script>
+      const button = document.querySelector(".findrabbit");
+      const rabbit = document.querySelector("#rabbit");
+
+    // MDN "scrolIntoViewOptions" refered (behabior, block, inline)
+
+      button.addEventListener('click', event => {
+        rabbit.scrollIntoView({block:'center',behavior:'smooth'});
+      });
+    </script>
+  </body>
+</html>

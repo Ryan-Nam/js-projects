@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll</title>
+    <style>
+      body{
+        background-color: black;
+      }
+      div{
+        text-align: center;
+      }
+
+      .btnbox{
+        text-align: center;
+
+      }
+      
+
+      aside {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        
+    }
+    .findrabbit{
+      background-color: orangered; 
+        color: white;
+        font-size: 30px;
+    }
+
+    </style>
+  </head>
+  <body>
+    <aside>
+      <button class="findrabbit">Find a rabbit</button>
+  </aside>
+
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/rabbit.png" alt="rabbit" class="rabbit">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+    <div>
+      <img src="img/carrot.png" alt="carrot" class="carrot">
+    </div>
+
+    <script>
+      // const rabbitt = document.querySelector("rabbit");
+
+      // window.addEventListener('click', (event) => {
+
+      // });
+
+      const clickthisbro = document.querySelector(".findrabbit");
+
+      const rabitlocation = document.querySelector(".rabbit");
+
+
+      clickthisbro.addEventListener('click', event => {
+        rabitlocation.scrollIntoView({behavior:'smooth'});
+      });
+
+
+
+
+      function printMousePos(e) {
+    var cursorX = e.pageX;
+    var cursorY = e.pageY;
+    document.getElementById('rabbit').innerHTML = "x: " + cursorX + ", y: " + cursorY;
+}
+    </script>
+  </body>
+</html>
