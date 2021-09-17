@@ -52,6 +52,8 @@
       });
       button.addEventListener('click', event => {
         console.log(`button1 ${event.currentTarget}, ${event.target}`);
+        // event.stopPropagation(); // No bubbling => Bad Bad method because this is quite rude.
+        // event.stopImmediatePropagation(); // only ONE btn is clicked  => Bad Bad method
       });
       button.addEventListener('click', event => {
         console.log(`button2 ${event.currentTarget}, ${event.target}`);

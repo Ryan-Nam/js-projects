@@ -29,58 +29,53 @@ function onAdd(){
     
 }
 
-
-
+// set the global ID variable
+let id = 0; //UUID (library use in project.. this is just for prac);
 function createItem(text){
-    
+
     const itemRow = document.createElement('li');
     itemRow.setAttribute('class', 'item__row');
+    itemRow.setAttribute('data-target-id', id);
 
-    const item = document.createElement('div');
-    item.setAttribute('class', 'item');
+    itemRow.innerHTML = `
+        <div class="item">
+            <span class="item_name">${text}</span>
+                <button class="item__delete">
+                    <i class = "fas fa-trash-alt" data-id=${id}></i>
+                </button>
+        </div>
+        <div class="item__divider"></div>
+	`;
+    id++;
 
-    const name = document.createElement('span');
-    name.setAttribute('class', 'item_name');
-    name.innerText = text;
+    // const item = document.createElement('div');
+    // item.setAttribute('class', 'item');
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.setAttribute('class', 'item__delete');
-    deleteBtn.innerHTML = `<i class = "fas fa-trash-alt"></i>`;
+    // const name = document.createElement('span');
+    // name.setAttribute('class', 'item_name');
+    // name.innerText = text;
 
-    deleteBtn.addEventListener('click', () =>{
-        items.removeChild(itemRow);
-    });
+    // const deleteBtn = document.createElement('button');
+    // deleteBtn.setAttribute('class', 'item__delete');
+    // deleteBtn.innerHTML = `<i class = "fas fa-trash-alt"></i>`;
 
-    // const checkBtn = document.createElement('button');
-    // checkBtn.setAttribute('class', 'item__check');
-    // checkBtn.innerHTML = `<i class = "fas fa-trash-alt"></i>`;
-    // checkBtn.addEventListener('click', () =>{
-	// if(itemRow.style.textDecoration == 'line-through'){
-	// 	itemRow.style.textDecoration = 'none';
-	// } else {
-	// 	itemRow.style.textDecoration = 'line-through';
-	// }
+    // deleteBtn.addEventListener('click', () =>{
+    //     items.removeChild(itemRow);
     // });
 
-    const itemDivider = document.createElement('div');
-    itemDivider.setAttribute('class', 'item__divider');
+    // const itemDivider = document.createElement('div');
+    // itemDivider.setAttribute('class', 'item__divider');
 
-    item.appendChild(name);
-    item.appendChild(deleteBtn);
-    // item.appendChild(checkBtn);
+    // item.appendChild(name);
+    // item.appendChild(deleteBtn);
+    // // item.appendChild(checkBtn);
 
-    itemRow.appendChild(item);
-    itemRow.appendChild(itemDivider);
+    // itemRow.appendChild(item);
+    // itemRow.appendChild(itemDivider);
 
     return itemRow;
 
-    // itemRow.innerHTML = `
-    //     <div class="item">
-	// 	    <span class="item_name">${todo}</span>
-	// 	    <button class="item__delete"><i class = "fas fa-trash-alt"></i></button>
-    //     </div>
-    //     <div class="item__divider"></div>
-	// `;
+
 }
 
 
@@ -102,6 +97,21 @@ input.addEventListener('keypress', (event) => {
 deleteAll.addEventListener('click', () => {
     handleClearAll();
 });
+
+items.addEventListener('click', event => {
+    // If gonna be dangerous if we set "I", cuz what if we  have more "I" later like edit button.
+    // if(event.target.nodeName === 'I'){
+    //     console.log('he');
+    // }
+    // So, We gonna use dataset ID!!!!!!!!!!
+    const id = event.target.dataset.id;
+    if (id) { // if there is id!,   
+        const toBeDeleted = document.querySelector(`.item__row[data-target-id="${id}"]`);
+        toBeDeleted.remove();
+        input.focus();
+        
+    }
+})
 
 // document.querySelector('.footer__button').addEventListener('click', addItem);
 
