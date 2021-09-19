@@ -3,6 +3,12 @@ const input = document.querySelector('.footer__input');
 const addBtn = document.querySelector('.footer__button');
 
 const deleteAll = document.querySelector('.clearAll');
+const form = document.querySelector('.new-form');
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    onAdd();
+})
 
 function onAdd(){
     // logics
@@ -83,25 +89,6 @@ function handleClearAll(){
     items.innerHTML = '';
     input.focus();
 }
-
-addBtn.addEventListener('click', () => {
-    onAdd();
-});
-
-// input.addEventListener('keypress', (event) => {
-//     if (event.key === 'Enter'){
-//         onAdd();
-//     }
-// })
-input.addEventListener('keydown', (event) => {
-    // in case of Korean, chinese kind of language
-    // if (event.isComposing) {
-    //     return;
-    // }
-    if (event.key === 'Enter'){
-        onAdd();
-    }
-});
 
 deleteAll.addEventListener('click', () => {
     handleClearAll();
