@@ -29,10 +29,11 @@ button {
   margin-top: 40px;
   /* background-color: blue;
   opacity: 0.3; */
+  position: relative;
 }
 
 /* Step 2, Button Setting */
-.gmae__button {
+.game__button {
   width: 60px;
   height: 60px;
   font-size: 30px;
@@ -43,12 +44,12 @@ button {
   transition: transform 200ms ease-in;
 }
 
-.gmae__button:hover {
+.game__button:hover {
   transform: scale(1.1);
 }
 
 /* Step 3, Game Timer and Score span */
-.gmae__timer {
+.game__timer {
   width: 100px;
   /* height: 48px; */
   text-align: center;
@@ -58,9 +59,12 @@ button {
   border-radius: 10px;
   margin-bottom: 10px;
   font-size: 32px;
+  /* need to be hidden before user click 'start' */
+  /* reason to use hidden, not display:none  => will affect the size.. */
+  visibility: hidden;
 }
 
-.gmae__score {
+.game__score {
   width: 50px;
   height: 50px;
   margin-top: 8px;
@@ -71,6 +75,8 @@ button {
   border-style: solid;
   border: 3px solid black;
   border-radius: 50%;
+
+  visibility: hidden;
 }
 
 /* Step 4, Pop up */
