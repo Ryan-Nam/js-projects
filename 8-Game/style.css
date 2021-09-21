@@ -1,56 +1,140 @@
-body {
-    background-image: url('img/background.png');
-    background-repeat: no-repeat;
-    /* background-size: cover; */
-    background-size: 100% 100%;
-    background-attachment: fixed;
-
-    text-align: center;
-}
-
-
 button {
-    outline: none;
-    background: transparent;
-    /* border: none; */
-    cursor: pointer;
-
+  outline: none;
+  /* background: transparent; */
+  border: none;
+  cursor: pointer;
 }
 
-.control__btn {
-    width: 48px;
-    height: 48px;
-    font-size: 30px;
-    background-color: white;
-    border-radius: 10px;
-     border-width: 3px;
-    margin-bottom: 10px;
+/* Step 1, General setting */
+.game {
+  display: flex;
+  flex-direction: column;
+  background: url(img/background.png) center/cover;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  border-radius: 20px;
 }
 
-.timer__box {
-    width: 150px;
-    height: 48px;
-    background-color: white;
-    margin: auto;
-    border-style: solid;
-    border-width: 3px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.game__header {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
 }
 
-.count__box {
-    width: 58px;
-    height: 58px;
-    font-size: 30px;
-    background-color: white;
-    margin: auto;
-    border-style: solid;
-    border-width: 3px;
-    border-radius: 50%;
+.game__field {
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
+  /* background-color: blue;
+  opacity: 0.3; */
 }
 
-.countdown{
-    margin: auto;
-    font-size: 50px;
-
+/* Step 2, Button Setting */
+.gmae__button {
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  background-color: wheat;
+  border-radius: 10px;
+  /* margin-bottom: 10px; */
+  border: 4px solid black;
+  transition: transform 200ms ease-in;
 }
+
+.gmae__button:hover {
+  transform: scale(1.1);
+}
+
+/* Step 3, Game Timer and Score span */
+.gmae__timer {
+  width: 100px;
+  /* height: 48px; */
+  text-align: center;
+  background-color: white;
+  margin-top: 8px;
+  border: 5px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.gmae__score {
+  width: 50px;
+  height: 50px;
+  margin-top: 8px;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  background-color: darksalmon;
+  border-style: solid;
+  border: 3px solid black;
+  border-radius: 50%;
+}
+
+/* Step 4, Pop up */
+.pop-up {
+  width: 400px;
+  height: 140px;
+  padding: 20px;
+  background-color: #00000090;
+  color: white;
+  text-align: center;
+  margin: auto;
+  transform: translateY(-150%);
+  /* opacity: 0.7;  because we do not want to give opacity to button and text */
+  border-radius: 20px;
+  display: block;
+}
+
+.pop-up__refresh {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  background-color: wheat;
+  border: 2px solid black;
+  border-radius: 60%;
+}
+
+.pop-up__message {
+  display: block;
+  font-size: 38px;
+}
+
+body {
+  text-align: center;
+}
+
+.pop-up--hide {
+  display: none;
+}
+
+/* Bug, Carrot */
+.carrot {
+  background-image: url(img/carrot.png);
+  width: 50px;
+  height: 50px;
+}
+
+/* 
+- display: flex 
+- flex-directionL colunm;
+
+text-align:center VS align-items:center
+
+
+- border: 4px solid black; no need to to    border-style: solid; border-width, border-color etc
+
+hover 커지게 하고 부드럽게
+1. button:hover 에 trnasform:scale(1.2) 속성을 준다
+2. button 에 trnasition: transform 300ms ease-in;
+
+
+- display:block  -> 다음줄로 나오게함
+
+- Pop up 같은 다른 section 을 밑에서 본문 위로 올리게 하는 방법....?? => transfrom: translateY(-150%); 이런식으로 
+
+- 투명도 조절법: opacity: 0.7 = 70%   or background-color: 00000090  => 90%
+
+*/
