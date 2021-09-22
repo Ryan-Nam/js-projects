@@ -9,7 +9,7 @@ const fieldRect = field.getBoundingClientRect(); // get height and width
 const CARROT_SIZE = 80;
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
-const GAME_DURATION_SEC = 120; // SetInterval, WebAPI use for the Timer  // setInterval until clearInterval
+const GAME_DURATION_SEC = 5; // SetInterval, WebAPI use for the Timer  // setInterval until clearInterval
 
 // Get Dom such as Game Button, Timer, Score 
 const gameBtn = document.querySelector('.game__button');
@@ -17,6 +17,11 @@ const gameTimer =  document.querySelector('.game__timer');
 const gameScore =  document.querySelector('.game__score');
 
 // Status
+const carrotSound = new Audio('./sound/carrot_pull.mp3');
+const alertSound = new Audio('./sound/alert.wav');
+const bgSound = new Audio('./sound/bg.mp3');
+const bugSound = new Audio('./sound/bug_pull.mp3');
+const winSound = new Audio('./sound/game_win.mp3');
 let started = false;
 let score = 0;
 let timer = undefined;
@@ -25,49 +30,64 @@ const popUp = document.querySelector('.pop-up');
 const popUpText = document.querySelector('.pop-up__message');
 const popUpRefresh = document.querySelector('.pop-up__refresh');
 
+field.addEventListener('click', onFieldClick);
+
 
 gameBtn.addEventListener('click', () => {
-    console.log('Ww');
+    // console.log('Ww');
     if (started){
         stopGame();
     } else {
         startGame();
     }
-    //change from false to true, || ture to false
-    started = !started;
+    
 });
 
-// Game Timer
-// gameBtn.addEventListener('click', (event)=> {
-//     event.preventDefault();
-//     let timeleft = 10; 
-//     let downloadTimer = setInterval(event => {
-//         gameTimer.innerHTML = timeleft;
-        
-//         timeleft -= 1;
-//         if(timeleft < 0){
-//             clearInterval(downloadTimer);
-//             gameTimer.innerHTML = 'Times up!';
-//         }
-//     }, 1000);
-// })
+popUpRefresh.addEventListener('click', () => {
+    startGame();
+    hidePopup();
+});
 
 // Game Start 
 function startGame() {
+    started = true;
     initGame(); //make randome carrot and bugs
     showStopButton();
     showtimerAndScore();
     startGameTimer();
+    playSound(bgSound);
 }
 
 // Time Stop
 // display pop up
 function stopGame() {
+    started = false;
     stopGameTimer();
+    hideGameButton();
+    ShowPopUpWithText('REAPLY???');
+    playSound(alertSound);
+    stopSound(bgSound);
+}
 
+function finishGame(win) {
+    started = false;
+    hideGameButton();
+    if(win) {
+        playSound(winSound);
+    }else {
+        playSound(bugSound);
+    }
+    stopGameTimer();
+    stopSound(bgSound);
+    ShowPopUpWithText(win? 'You Won' : 'You lost');
+}
 
-    
-
+// Game start -> change button from 'play' to 'pause'
+function showStopButton(){
+    const icon = gameBtn.querySelector('.fas');
+    icon.classList.add('fa-stop');
+    icon.classList.remove('fa-play');
+    gameBtn.style.visibility = 'visible';
 }
 
 function startGameTimer() {
@@ -76,6 +96,7 @@ function startGameTimer() {
     timer = setInterval(() => {
         if(remaingTimeSec <= 0) {
             clearInterval(timer);
+            finishGame(CARROT_COUNT === score);
             return;
         }
         updateTimerText(--remaingTimeSec);
@@ -84,8 +105,7 @@ function startGameTimer() {
 
 function stopGameTimer(){
     clearInterval(timer);
-    hideGameButton();
-    ShowPopUpWithText('REAPLY???');
+   
 }
 
 function updateTimerText(time){
@@ -97,26 +117,61 @@ function updateTimerText(time){
 function ShowPopUpWithText(text) {
     popUpText.innerText = text;
     popUp.classList.remove('pop-up--hide');
-    
+}
 
+function hidePopup(){
+    popUp.classList.add('pop-up--hide');
 }
 
 
 
 // Create Carrot and Bugs, add into Field
 function initGame() {
+    score = 0;
     field.innerHTML = '';
     gameScore.innerHTML = CARROT_COUNT;
     // console.log(fieldRect);
     addItem('carrot', CARROT_COUNT, 'img/carrot.png');
     addItem('bug', BUG_COUNT, 'img/bug.png');
 }
-// Game start -> change button from 'play' to 'pause'
-function showStopButton(){
-    const icon = gameBtn.querySelector('.fa-play');
-    icon.classList.add('fa-stop');
-    icon.classList.remove('fa-play');
+
+function onFieldClick(event) {
+    // when the game is not started, just return
+    if(!started) {
+        return;
+    }
+    const target = event.target;
+    if(target.matches('.carrot')){
+        // Carrot!!
+        target.remove();
+        score++;
+        playSound(carrotSound);
+        updateScoreBoard();
+        if(score === CARROT_COUNT){
+            finishGame(true); // win
+        }
+    } else if (target.matches('.bug')) {
+        // Bug!! -> Game stop
+        finishGame(false); // lose
+
+        
+    }
 }
+
+function playSound(sound) {
+    sound.currentTime = 0;
+    sound.play();
+}
+
+function stopSound(sound){
+    sound.pause();
+}
+
+function updateScoreBoard() {
+    gameScore.innerHTML = CARROT_COUNT - score;
+}
+
+
 
 function hideGameButton(){
     gameBtn.style.visibility = 'hidden';
