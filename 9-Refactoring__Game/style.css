@@ -1,0 +1,146 @@
+button {
+  outline: none;
+  /* background: transparent; */
+  border: none;
+  cursor: pointer;
+}
+
+/* Step 1, General setting */
+.game {
+  display: flex;
+  flex-direction: column;
+  background: url(img/background.png) center/cover;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  border-radius: 20px;
+}
+
+.game__header {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+}
+
+.game__field {
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
+  /* background-color: blue;
+  opacity: 0.3; */
+  position: relative;
+}
+
+/* Step 2, Button Setting */
+.game__button {
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  background-color: wheat;
+  border-radius: 10px;
+  /* margin-bottom: 10px; */
+  border: 4px solid black;
+  transition: transform 200ms ease-in;
+}
+
+.game__button:hover {
+  transform: scale(1.1);
+}
+
+/* Step 3, Game Timer and Score span */
+.game__timer {
+  width: 100px;
+  /* height: 48px; */
+  text-align: center;
+  background-color: white;
+  margin-top: 8px;
+  border: 5px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 32px;
+  /* need to be hidden before user click 'start' */
+  /* reason to use hidden, not display:none  => will affect the size.. */
+  visibility: hidden;
+}
+
+.game__score {
+  width: 50px;
+  height: 50px;
+  margin-top: 8px;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  background-color: darksalmon;
+  border-style: solid;
+  border: 3px solid black;
+  border-radius: 50%;
+
+  visibility: hidden;
+}
+
+/* Step 4, Pop up */
+.pop-up {
+  width: 400px;
+  height: 140px;
+  padding: 20px;
+  background-color: #00000090;
+  color: white;
+  text-align: center;
+  margin: auto;
+  transform: translateY(-150%);
+  /* opacity: 0.7;  because we do not want to give opacity to button and text */
+  border-radius: 20px;
+  display: block;
+}
+
+.pop-up__refresh {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  background-color: wheat;
+  border: 2px solid black;
+  border-radius: 60%;
+}
+
+.pop-up__message {
+  display: block;
+  font-size: 38px;
+}
+
+body {
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+/* Bug, Carrot */
+.carrot {
+  background-image: url(img/carrot.png);
+  width: 80px;
+  height: 80px;
+}
+
+/* 
+- display: flex 
+- flex-directionL colunm;
+
+text-align:center VS align-items:center
+
+
+- border: 4px solid black; no need to to    border-style: solid; border-width, border-color etc
+
+hover 커지게 하고 부드럽게
+1. button:hover 에 trnasform:scale(1.2) 속성을 준다
+2. button 에 trnasition: transform 300ms ease-in;
+
+
+- display:block  -> 다음줄로 나오게함
+
+- Pop up 같은 다른 section 을 밑에서 본문 위로 올리게 하는 방법....?? => transfrom: translateY(-150%); 이런식으로 
+
+- 투명도 조절법: opacity: 0.7 = 70%   or background-color: 00000090  => 90%
+
+*/

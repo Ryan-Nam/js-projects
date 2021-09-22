@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="src/main.js" defer></script>
+    <!-- without defer, before parsing HTML, execute JS.. so may have error -->
+    <script src="https://kit.fontawesome.com/46299ff9e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Game Section (Header, Menu) -->
+        <section class="game">
+            <header class="game__header">
+                <button class="game__button">
+                    <i class="fas fa-play"></i>
+                </button>
+                <span class="game__timer">0:0</span>
+                <span class="game__score">10</span>
+            </header>
+            <!-- Playground Section -->
+            <section class="game__field">
+                <!-- <span class="carrot"></span>
+                <span class="bug"></span> -->
+            </section>
+        </section>
+
+        <!-- Pop up section -->
+        <section class="pop-up hide">
+            <button class="pop-up__refresh">
+                <i class="fas fa-redo"></i>
+            </button>
+            <span class="pop-up__message">Hello</span>
+        </section>
+    
+</body>
+</html>
